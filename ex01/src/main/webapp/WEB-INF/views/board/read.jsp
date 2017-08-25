@@ -42,7 +42,28 @@
 					<button type="submit" class="btn btn-danger">Remove</button>
 					<button type="submit" class="btn btn-primary">List All</button>
 				</div>
-
+				
+				<script>
+					$(document).ready(function(){
+						var formObj = $("form[role='form']");
+						console.log(formObj);
+						
+						$(".btn-warning").on("click", function(){
+							formObj.attr("action", "/board/modify");
+							formObj.attr("method", "get");
+							formObj.submit();
+						});
+						
+						$(".btn-danger").on("click", function(){
+							formObj.attr("action", "/board/remove");
+							formObj.submit();
+						});
+						
+						$(".btn-primary").on("click", function(){
+							self.location = "/board/listAll";
+						});
+					});
+				</script>
 			</div>
 		</div>
 		<!-- /.col (left) -->
