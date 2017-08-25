@@ -29,7 +29,7 @@
 	
 	<select id="listAll" resultType="com.mkki.domain.BoardVO">
 		<![CDATA[
-		selectx
+		select
 			bno, title, content, writer, regdate, viewcnt
 		from
 			tbl_board
