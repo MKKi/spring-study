@@ -1,17 +1,22 @@
 package com.mkki.controller;
 
+import java.io.Writer;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mkki.domain.BoardVO;
+import com.mkki.domain.Criteria;
+import com.mkki.domain.PageMaker;
 import com.mkki.service.BoardService;
 
 @Controller
@@ -69,11 +74,31 @@ public class BoardController {
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modify(BoardVO board, RedirectAttributes rttr) throws Exception{
-		logger.info("modify post...");
+		logger.info("modify post..");
 		
 		service.modify(board);
 		rttr.addFlashAttribute("msg", "success");
 		
 		return "redirect:/board/listAll";
 	}
+	
+	@RequestMapping(value="/listCri", method=RequestMethod.GET)
+	public void listAll(Criteria cri, Model model) throws Exception {
+		logger.info("show list page with criteria..");
+		
+		model.addAttribute("list", service.listCriteria(cri));
+	}
+	
+	@RequestMapping(value="/listPage", method=RequestMethod.GET)
+	public void listPage(Criteria cri, Model model) throws Exception{
+		logger.info(cri.toString());
+		
+		model.addAttribute("list", service.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.listCountCriteria(cri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+	}
 }
+

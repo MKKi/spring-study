@@ -5,8 +5,8 @@
 
 <mapper namespace="com.mkki.mapper.BoardMapper">
 	<insert id="create">
-		insert into tbl_board(title, content, writer)
-		values(#{title}, #{content}, #{writer})
+		insert into tbl_board(bno, title, content, writer)
+		values(seq_board.nextval, #{title}, #{content}, #{writer})
 	</insert>
 
 	<select id="read" resultType="com.mkki.domain.BoardVO">
@@ -50,10 +50,38 @@
 		    /*+INDEX_DESC(tbl_board, pk_board)*/
 		    rownum rn, bno, title, content, writer, viewcnt, regdate
 		  from tbl_board
+		  where rownum <= #{page} * 10
+		  and bno > 0
+		  )
+		where rn > (#{page} -1) * 10
+		]]>
+	</select>
+	
+	<select id="listCriteria" resultType="com.mkki.domain.BoardVO">
+		<![CDATA[
+		select
+		  bno, title, content, writer, viewcnt, regdate
+		from
+		  (
+		  select
+		    /*+INDEX_DESC(tbl_board, pk_board)*/
+		    rownum rn, bno, title, content, writer, viewcnt, regdate
+		  from tbl_board
 		  where rownum <= #{page} * #{perPageNum}
 		  and bno > 0
 		  )
 		where rn > (#{page} -1) * #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="countPaging" resultType="int">
+		<![CDATA[
+		select
+			count(*)
+		from
+			tbl_board
+		where
+			bno > 0
 		]]>
 	</select>
 </mapper>
