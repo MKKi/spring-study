@@ -1,5 +1,8 @@
 package com.mkki.domain;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class PageMaker {
 	private int totalCount;
 	private int startPage;
@@ -34,6 +37,17 @@ public class PageMaker {
 		prev = (startPage == 1) ? false : true;
 		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
 	}
+	
+	public String makeQuery(int page) {
+		UriComponents uriComponents =
+				UriComponentsBuilder.newInstance()
+					.queryParam("page", page)
+					.queryParam("perPageNum", cri.getPerPageNum())
+					.build();
+		
+		return uriComponents.toUriString();
+	}
+	
 	// getter / setter
 	public int getStartPage() {
 		return startPage;
@@ -82,6 +96,7 @@ public class PageMaker {
 	public Criteria getCri() {
 		return cri;
 	}
+	
 
 	@Override
 	public String toString() {
