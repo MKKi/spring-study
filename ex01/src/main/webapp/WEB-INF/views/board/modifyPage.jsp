@@ -26,7 +26,7 @@
 
 						<div class="form-group">
 							<label for="exampleInputWriter1">Title</label> <input type="text"
-								name="title" class="form-control" value="${boardVO.writer }">
+								name="title" class="form-control" value="${boardVO.title }">
 						</div>
 
 						<div class="form-group">
@@ -65,7 +65,7 @@
 	});
 
 	$(".btn-warning").on("click", function() {
-		self.location = "/board/listPage?page=${cri.page}&perPageNum=${perPageNum}";
+		self.location = "/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}";
 	})
 </script>
 </div>
