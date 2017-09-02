@@ -53,7 +53,6 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
-			
 		return session.selectList(namespace+".listCriteria", cri);
 	}
 

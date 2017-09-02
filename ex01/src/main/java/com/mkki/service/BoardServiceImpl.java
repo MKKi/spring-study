@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mkki.domain.BoardVO;
 import com.mkki.domain.Criteria;
+import com.mkki.domain.SearchCriteria;
 import com.mkki.persistence.BoardDAO;
 
 @Service
@@ -40,6 +41,7 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> listAll() throws Exception {
 		return dao.listAll();
 	}
+	
 
 	@Override
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
@@ -49,5 +51,15 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int listCountCriteria(Criteria cri) throws Exception {
 		return dao.countPaging(cri);
+	}
+	
+	@Override
+	public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception {
+		return dao.listSearch(cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		return dao.listSearchCount(cri);
 	}
 }

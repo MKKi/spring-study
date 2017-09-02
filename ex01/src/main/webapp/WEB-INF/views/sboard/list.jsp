@@ -38,8 +38,8 @@
 						<option value="tcw"
 							<c:out value="${cri.searchType == 'tcw' ? 'selected' : '' }"/>>Title or Content or Writer
 						</option>
-					</select>
-					<input type="text" name="keyword" id="keywordInput" value="${cri.keyword}">
+					</select> <input type="text" name="keyword" id="keywordInput"
+						value="${cri.keyword}">
 					<button id="searchBtn">Search</button>
 					<button id="newBtn">New Board</button>
 				</div>
@@ -74,7 +74,8 @@
 					<div class="text-center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev}">
-								<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a></li>
+								<li><a
+									href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage }"
@@ -86,7 +87,8 @@
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-								<li><a href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
+								<li><a
+									href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
 							</c:if>
 
 						</ul>
@@ -100,20 +102,30 @@
 	<!-- /.row -->
 </section>
 <script>
-	$(document).ready(function(){
-		$('#searchBtn').on("click", function(event){
-				self.location = "list"
-					+ '${pageMaker.makeQuery(1)}'
-					+ "&searchType="
-					+ $("select option:selected").val()
-					+ "&keyword="
-					+ encodeURIComponent($('#keywordInput').val());
-		});
-		
-		$('#newBtn').on("click", function(evt){
-			self.location = "register";
-		});
-	});
+	var result = '${msg}';
+	if (result == 'success') {
+		alert('처리완료');
+	}
+</script>
+<script>
+	$(document).ready(
+			function() {
+				$('#searchBtn').on(
+						"click",
+						function(event) {
+							self.location = "list"
+									+ '${pageMaker.makeQuery(1)}'
+									+ "&searchType="
+									+ $("select option:selected").val()
+									+ "&keyword="
+									+ encodeURIComponent($('#keywordInput')
+											.val());
+						});
+
+				$('#newBtn').on("click", function(evt) {
+					self.location = "register";
+				});
+			});
 </script>
 
 </div>
