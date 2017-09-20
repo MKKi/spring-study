@@ -3,17 +3,19 @@ package com.mkki.domain;
 import java.util.Date;
 
 public class MessageVO {
-	private Integer mid;
+	private Integer mno;
 	private String targetid;
 	private String sender;
 	private String message;
 	private Date opendate;
 	private Date senddate;
-	public Integer getMid() {
-		return mid;
+	
+	
+	public Integer getMno() {
+		return mno;
 	}
-	public void setMid(Integer mid) {
-		this.mid = mid;
+	public void setMno(Integer mno) {
+		this.mno = mno;
 	}
 	public String getTargetid() {
 		return targetid;
@@ -45,10 +47,10 @@ public class MessageVO {
 	public void setSenddate(Date senddate) {
 		this.senddate = senddate;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "MessageVO [mid=" + mid + ", targetid=" + targetid + ", sender=" + sender + ", message=" + message
+		return "MessageVO [mno=" + mno + ", targetid=" + targetid + ", sender=" + sender + ", message=" + message
 				+ ", opendate=" + opendate + ", senddate=" + senddate + "]";
 	}
 }

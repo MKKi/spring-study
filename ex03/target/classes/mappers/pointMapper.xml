@@ -5,7 +5,7 @@
   
   <mapper namespace="com.mkki.mapper.PointMapper">
   	<update id="updatePoint">
-  		update into tbl_user set upoint = upoint + #{point}
+  		update tbl_user set upoint = upoint+#{point}
   		where userid = #{userid}
   	</update>
   </mapper>

@@ -5,8 +5,8 @@
   
   <mapper namespace="com.mkki.mapper.MessageMapper">
   	<insert id="create">
-  		insert into tbl_message (targetid, sender, message)
-  		values(#{targetid}, #{sender}, #{message})
+  		insert into tbl_message (mno, targetid, sender, message)
+  		values(SEQ_MESSAGE.nextval, #{targetid}, #{sender}, #{message})
   	</insert>
   	
   	<select id="readMessage" resultType="MessageVO">
@@ -14,6 +14,6 @@
   	</select>
   	
   	<update id="updateState">
-  		update into tbl_message set opendate = sysdate where mno=#{mno}
+  		update tbl_message set opendate = sysdate where mno=#{mno}
   	</update>
   </mapper>
