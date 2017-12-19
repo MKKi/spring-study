@@ -1,6 +1,8 @@
 package com.mkki.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -69,5 +71,18 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return session.selectOne(namespace+".listSearchCount", cri);
+	}
+
+	@Override
+	public void updateReplyCnt(Integer bno, int amount) throws Exception {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("bno", bno);
+		paramMap.put("amount", amount);
+		session.update(namespace+".updateReplyCnt", paramMap);
+	}
+	
+	@Override
+	public void updateViewCnt(Integer bno) throws Exception {
+		session.update(namespace+".updateViewCnt", bno);
 	}
 }

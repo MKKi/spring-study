@@ -11,11 +11,11 @@
 
 	<select id="read" resultType="com.mkki.domain.BoardVO">
 		select
-		bno, title, content, writer,
-		regdate, viewcnt
+			bno, title, content, writer, regdate, viewcnt, replycnt
 		from
-		tbl_board
-		where bno = #{bno}
+			tbl_board
+		where
+			bno = #{bno}
 	</select>
 
 	<update id="update">
@@ -32,7 +32,7 @@
 	<select id="listAll" resultType="com.mkki.domain.BoardVO">
 		<![CDATA[
 		select
-			bno, title, content, writer, regdate, viewcnt
+			bno, title, content, writer, regdate, viewcnt, replycnt
 		from
 			tbl_board
 		where bno > 0
@@ -43,12 +43,12 @@
 	<select id="listPage" resultType="com.mkki.domain.BoardVO">
 		<![CDATA[
 		select
-		  bno, title, content, writer, viewcnt, regdate
+		  bno, title, content, writer, viewcnt, regdate, replycnt
 		from
 		  (
 		  select
 		    /*+INDEX_DESC(tbl_board, pk_board)*/
-		    rownum rn, bno, title, content, writer, viewcnt, regdate
+		    rownum rn, bno, title, content, writer, viewcnt, regdate, replycnt
 		  from tbl_board
 		  where rownum <= #{page} * 10
 		  and bno > 0
@@ -60,12 +60,12 @@
 	<select id="listCriteria" resultType="com.mkki.domain.BoardVO">
 		<![CDATA[
 		select
-		  bno, title, content, writer, viewcnt, regdate
+		  bno, title, content, writer, regdate, viewcnt, replycnt
 		from
 		  (
 		  select
 		    /*+INDEX_DESC(tbl_board, pk_board)*/
-		    rownum rn, bno, title, content, writer, viewcnt, regdate
+		    rownum rn, bno, title, content, writer, regdate, viewcnt, replycnt
 		  from tbl_board
 		  where rownum <= #{page} * #{perPageNum}
 		  and bno > 0
@@ -117,12 +117,12 @@
 	<select id="listSearch" resultType="com.mkki.domain.BoardVO">
 		<![CDATA[
 		select
-		  bno, title, content, writer, viewcnt, regdate
+		  bno, title, content, writer, viewcnt, regdate, replycnt
 		from
 		  (
 		  select
 		    /*+INDEX_DESC(tbl_board, pk_board)*/
-		    rownum rn, bno, title, content, writer, viewcnt, regdate
+		    rownum rn, bno, title, content, writer, viewcnt, regdate, replycnt
 		  from tbl_board
 		  where 1=1
 		]]>
@@ -148,4 +148,12 @@
 			and bno > 0
 		]]>
 	</select>
+	
+	<update id="updateReplyCnt">
+		update tbl_board set replycnt = replycnt + #{amount} where bno = #{bno}
+	</update>
+	
+	<update id="updateViewCnt">
+		update tbl_board set viewcnt = viewcnt + 1 where bno = #{bno}
+	</update>
 </mapper>

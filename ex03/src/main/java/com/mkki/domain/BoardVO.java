@@ -9,13 +9,21 @@ public class BoardVO {
 	private String writer;
 	private Date regdate;
 	private int viewcnt;
+	private int replycnt;
 	
 	// getter/setter
+	
 	public Integer getBno() {
 		return bno;
 	}
 	public void setBno(Integer bno) {
 		this.bno = bno;
+	}
+	public int getReplycnt() {
+		return replycnt;
+	}
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
 	}
 	public String getTitle() {
 		return title;
