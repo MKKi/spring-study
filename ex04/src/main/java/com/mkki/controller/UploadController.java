@@ -7,11 +7,14 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -23,7 +26,7 @@ public class UploadController {
 	
 	@RequestMapping(value="/uploadForm", method=RequestMethod.GET)
 	public void uploadForm() {
-		
+		logger.info("get uploadForm");
 	}
 	
 	@RequestMapping(value="/uploadForm", method=RequestMethod.POST)
@@ -48,5 +51,19 @@ public class UploadController {
 		return savedName;
 	}
 	
+	@RequestMapping(value="/uploadAjax", method=RequestMethod.GET)
+	public void uploadAjax() {
+		logger.info("get uploadAjax");
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/uploadAjax", method=RequestMethod.POST, produces="text/plan;charset=UTF-8")
+	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception{
+		logger.info("originalName: " + file.getOriginalFilename());
+		logger.info("size: " + file.getSize() + "byte");
+		logger.info("contentType: " + file.getContentType());
+		
+		return new ResponseEntity<>(file.getOriginalFilename(), HttpStatus.CREATED);
+	}
 	
 }

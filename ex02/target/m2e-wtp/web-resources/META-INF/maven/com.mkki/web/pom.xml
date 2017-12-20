@@ -50,8 +50,7 @@
 			<artifactId>ojdbc7</artifactId>
 			<version>12.1.0.2</version>
 		</dependency>
-
-
+		
 		<!-- MyBatis 라이브러리 -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
