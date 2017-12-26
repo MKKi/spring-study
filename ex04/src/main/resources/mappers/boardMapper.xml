@@ -163,6 +163,6 @@
 	</insert>
 	
 	<select id="getAttach" resultType="string">
-		select fullname from tbl_attach where bno = ${bno} order by regdate
+		select fullname from tbl_attach where bno = #{bno} order by regdate
 	</select>
 </mapper>
