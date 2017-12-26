@@ -25,7 +25,7 @@
 				</div>
 				<!-- box-header -->
 
-				<form role="form" method="post">
+				<form id="registerForm" role="form" method="post">
 					<div class="box-body">
 						<div class="form-group">
 							<label for="exampleInputTitle1">Title</label> <input type="text"
@@ -78,7 +78,7 @@
 		<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
 		<div class="mailbox-attachment-info">
 			<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
-			<a href="{{fullName}}" class="btn btn-default btn-xs pull-right deltn">
+			<a href="{{fullName}}" class="btn btn-default btn-xs pull-right delbtn">
 				<i class="fa fa-fw fa-remove"></i>
 			</a>
 		</span>
@@ -125,12 +125,15 @@
 
 		$(".uploadedList .delbtn").each(function(index){
 			str += "<input type='hiden' name='files[" + index + "]' value= '"
-					+ $(this).attr(html) + "'>";
+					+ $(this).attr("href") + "'>";
 		});
 
 		that.append(str);
+
 		that.get(0).submit();
 	});
+	
+	
 </script>
 
 </div>

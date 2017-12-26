@@ -19,6 +19,7 @@ public class BoardServiceImpl implements BoardService{
 	@Inject
 	private BoardDAO dao;
 
+	@Transactional
 	@Override
 	public void regist(BoardVO board) throws Exception {
 		dao.create(board);
@@ -75,5 +76,10 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return dao.listSearchCount(cri);
+	}
+	
+	@Override
+	public List<String> getAttach(Integer bno) throws Exception {
+		return dao.getAttach(bno);
 	}
 }

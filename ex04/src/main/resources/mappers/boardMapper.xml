@@ -158,6 +158,11 @@
 	</update>
 	
 	<insert id="addAttach">
-		insert into tbl_attach(fullname, bno) values(#{fullname}, seq_board.currval)
+		insert into tbl_attach(fullname, bno)
+		values(#{fullname}, seq_board.currval)
 	</insert>
+	
+	<select id="getAttach" resultType="string">
+		select fullname from tbl_attach where bno = ${bno} order by regdate
+	</select>
 </mapper>
