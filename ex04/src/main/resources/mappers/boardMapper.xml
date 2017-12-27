@@ -162,7 +162,15 @@
 		values(#{fullname}, seq_board.currval)
 	</insert>
 	
-	<select id="getAttach" resultType="string">
+	<select id="getAttach" parameterType="integer" resultType="string">
 		SELECT FULLNAME FROM TBL_ATTACH WHERE BNO = #{BNO} ORDER BY REGDATE
 	</select>
+	
+	<delete id="deleteAttach">
+		delete from tbl_attach where bno = #{bno}
+	</delete>
+	
+	<insert id="replaceAttach">
+		insert into tbl_attach(fullname, bno) values(#{fullname}, #{bno})
+	</insert>
 </mapper>
