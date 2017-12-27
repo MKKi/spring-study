@@ -11,9 +11,15 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.mkki.web">
+	<logger name="com.mkki.controller">
 		<level value="info" />
 	</logger>
+	
+	
+	<logger name="com.mkki.service">
+		<level value="info" />
+	</logger>
+	
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
@@ -34,7 +40,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	

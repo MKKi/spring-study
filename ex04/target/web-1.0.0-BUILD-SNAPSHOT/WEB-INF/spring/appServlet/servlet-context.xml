@@ -23,6 +23,13 @@
 	
 	<context:component-scan base-package="com.mkki.controller" />
 	
+	<!-- MultipartResolver for file upload -->
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
 	
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="C:\\uploadTest"></beans:constructor-arg>
+	</beans:bean>
 	
 </beans:beans>
