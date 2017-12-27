@@ -162,7 +162,7 @@
 		values(#{fullname}, seq_board.currval)
 	</insert>
 	
-	<select id="getAttach" resultType="string">
-		select fullname from tbl_attach where bno = ${bno} order by regdate
+	<select id="getAttach" parameterType="integer" resultType="string">
+		SELECT FULLNAME FROM TBL_ATTACH WHERE BNO = #{BNO} ORDER BY REGDATE
 	</select>
 </mapper>
