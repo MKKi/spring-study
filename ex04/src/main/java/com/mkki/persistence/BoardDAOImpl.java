@@ -106,7 +106,7 @@ public class BoardDAOImpl implements BoardDAO {
 		Map<String, Object> paramMap = new HashMap<>();
 		
 		paramMap.put("bno", bno);
-		paramMap.put("fullname", fullName);
+		paramMap.put("fullName", fullName);
 		
 		session.insert(namespace+".replaceAttach", paramMap);
 	}
