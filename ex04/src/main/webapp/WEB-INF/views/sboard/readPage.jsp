@@ -164,12 +164,12 @@
 				arr.push($(this).attr("data-src"));
 			});
 			
-			if(arr.length > 0){
-				$.post("/deleteAllFiles",{files:arr}, function(){
+			if(arr.length > 0)
+				$.post("/deleteAllFiles", { files:arr }, function(){
 					
 				});
-			}
 			
+
 			formObj.attr("action", "/sboard/removePage");
 			formObj.submit();
 		});

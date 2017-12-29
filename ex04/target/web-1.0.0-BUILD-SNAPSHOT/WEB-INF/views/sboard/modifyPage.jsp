@@ -3,21 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<script type="text/javascript" src="/resources/js/upload.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
-<script id="template" type="text/x-handlebars-template">
-	<li>
-		<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
-		<div class="mailbox-attachment-info">
-			<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
-			<a href="{{fullName}}" 
-				class="btn btn-default btn-xs pull-right delbtn"><i class="fa fa-fw fa-remove"></i></a>
-		</span>
-	    </div>
-	</li>
-</script>
+
 
 <style>
 .fileDrop {
@@ -88,16 +75,21 @@
 						<button type="submit" class="btn btn-warning">Cancel</button>
 					</div>
 				</form>
-			</div>
-		</div>
-		<!-- /.col (left) -->
-	</div>
-	<!-- /.row -->
-</section>
-<!-- /.content -->
-
-
-<script>
+				<script type="text/javascript" src="/resources/js/upload.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+				
+				<script id="template" type="text/x-handlebars-template">
+	<li>
+		<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
+		<div class="mailbox-attachment-info">
+			<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
+			<a href="{{fullName}}" 
+				class="btn btn-default btn-xs pull-right delbtn"><i class="fa fa-fw fa-remove"></i></a>
+	    </div>
+	</li>
+</script>
+				<script>
 	$(document)
 			.ready(
 					function() {
@@ -237,6 +229,16 @@
 
 	});
 </script>
+			</div>
+		</div>
+		<!-- /.col (left) -->
+	</div>
+	<!-- /.row -->
+</section>
+<!-- /.content -->
+
+
+
 </div>
 
 <%@ include file="../include/footer.jsp"%>

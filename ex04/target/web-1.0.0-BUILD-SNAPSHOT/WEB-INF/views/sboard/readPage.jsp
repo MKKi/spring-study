@@ -151,8 +151,25 @@
 		});
 
 		$("#removeBtn").on("click", function() {
-			formObj.attr("action", "/sboard/removePage");
-			formObj.submit();
+			var replyCnt = $("#replycntSmall").html().replace(/[^0-9]/g,"");
+			
+			console.log(replyCnt);
+			if(replyCnt > 0){
+				alert('댓글이 달린 게시물을 삭제할 수 없습니다.');
+				return;
+			}
+			
+			var arr = [];
+			$(".uploadedList li").each(function(index){
+				arr.push($(this).attr("data-src"));
+			});
+			
+			if(arr.length > 0){
+				$.post("/deleteAllFile", {files:"arr"}, function(){
+					
+				});
+			}
+
 		});
 
 		$("#listBtn").on("click", function() {
@@ -372,6 +389,7 @@
 	$("#popup_img").on("click", function(){
 		$(".popup").hide('slow');
 	});
+	
 </script>
 </div>
 

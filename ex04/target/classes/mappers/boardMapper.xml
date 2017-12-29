@@ -11,11 +11,11 @@
 
 	<select id="read" resultType="com.mkki.domain.BoardVO">
 		select
-			bno, title, content, writer, regdate, viewcnt, replycnt
+		bno, title, content, writer, regdate, viewcnt, replycnt
 		from
-			tbl_board
+		tbl_board
 		where
-			bno = #{bno}
+		bno = #{bno}
 	</select>
 
 	<update id="update">
@@ -97,23 +97,26 @@
 				and writer like '%'|| #{keyword}||'%'
 			</if>
 			<if test="searchType == 'tc'.toString()">
-				and ( title like '%'|| #{keyword}||'%' OR content like '%'||
+				and ( title like '%'|| #{keyword}||'%' OR content like
+				'%'||
 				#{keyword}||'%')
 			</if>
 			<if test="searchType == 'cw'.toString()">
-				and ( content like '%'|| #{keyword}||'%' OR writer like '%'||
+				and ( content like '%'|| #{keyword}||'%' OR writer like
+				'%'||
 				#{keyword}||'%')
 			</if>
 			<if test="searchType == 'tcw'.toString()">
 				and ( title like '%'|| #{keyword}||'%'
 				OR
-				content like '%'|| #{keyword}||'%'
+				content like
+				'%'|| #{keyword}||'%'
 				OR
 				writer like '%'|| #{keyword}||'%')
 			</if>
 		</if>
 	</sql>
-	
+
 	<select id="listSearch" resultType="com.mkki.domain.BoardVO">
 		<![CDATA[
 		select
@@ -148,29 +151,33 @@
 			and bno > 0
 		]]>
 	</select>
-	
+
 	<update id="updateReplyCnt">
-		update tbl_board set replycnt = replycnt + #{amount} where bno = #{bno}
+		update tbl_board set replycnt = replycnt + #{amount}
+		where bno = #{bno}
 	</update>
-	
+
 	<update id="updateViewCnt">
-		update tbl_board set viewcnt = viewcnt + 1 where bno = #{bno}
+		update tbl_board set viewcnt = viewcnt + 1 where bno
+		= #{bno}
 	</update>
-	
+
 	<insert id="addAttach">
 		insert into tbl_attach(fullname, bno)
 		values(#{fullname}, seq_board.currval)
 	</insert>
-	
-	<select id="getAttach" parameterType="integer" resultType="string">
+
+	<select id="getAttach" resultType="string">
 		SELECT FULLNAME FROM TBL_ATTACH WHERE BNO = #{BNO} ORDER BY REGDATE
 	</select>
-	
+
 	<delete id="deleteAttach">
 		delete from tbl_attach where bno = #{bno}
 	</delete>
-	
+
+
 	<insert id="replaceAttach">
-		insert into tbl_attach(fullname, bno) values(#{fullname}, #{bno})
+		insert into tbl_attach(fullname, bno)
+		values(#{fullname}, #{bno})
 	</insert>
 </mapper>
