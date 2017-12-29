@@ -130,7 +130,7 @@ public class UploadController {
 	
 	@ResponseBody
 	@RequestMapping(value="/deleteAllFiles", method=RequestMethod.POST)
-	public ResponseEntity<String> deleteFile(@RequestParam("files[]") String[] files){
+	public ResponseEntity<String> deleteFile(@RequestParam String[] files){
 		logger.info("delete all files : " + files);
 		
 		if(files == null || files.length == 0) {
