@@ -165,7 +165,7 @@
 			});
 			
 			if(arr.length > 0){
-				$.post("/deleteAllFiles", {files:arr}, function(){
+				$.post("/deleteAllFiles",{files:arr}, function(){
 					
 				});
 			}
