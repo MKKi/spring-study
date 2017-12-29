@@ -15,6 +15,13 @@ public class SampleInterceptor extends HandlerInterceptorAdapter{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		System.out.println("========== post handler ==========");
+		
+		Object result = modelAndView.getModel().get("result");
+		
+		if(result != null) {
+			request.getSession().setAttribute("result", result);
+			response.sendRedirect("/doA");
+		}
 	}
 	
 	@Override
