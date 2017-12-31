@@ -12,8 +12,7 @@ public class UserDAOImpl implements UserDAO{
 	@Inject
 	private SqlSession session;
 	
-	
-	private static String namespace = "com.mkki.domain.BoardVO";
+	private static String namespace = "com.mkki.mapper.UserMapper";
 	
 	@Override
 	public UserVO login(LoginDTO dto) throws Exception {
