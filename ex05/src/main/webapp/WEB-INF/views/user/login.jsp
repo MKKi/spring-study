@@ -41,6 +41,11 @@
 			
 			<form action="/user/loginPost" method="post">
 				<div class="form-group has-feedback">
+					<input type="text" name="userid" class="form-control" placeholder="USER ID" />
+					<span clss="glyphicon glyphicon-lock form-control-feedback"></span>
+				</div>
+				
+				<div class="form-group has-feedback">
 					<input type="password" name="upw" class="form-control" placeholder="Password" />
 					<span clss="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
@@ -49,7 +54,7 @@
 					<div class="col-xs-8">
 						<div class="checkbox icheck">
 							<label>
-								<input type="checkbox" name="userCookie"> Remember Me </input>
+								<input type="checkbox" name="userCookie"> Remember Me
 							</label>
 						</div>
 					</div>
