@@ -39,7 +39,7 @@
 						<div class="form-group">
 							<label for="exampleInputWriter1">Writer</label> <input
 								type="text" name="writer" class="form-control"
-								placeholder="Enter Writer">
+								value="${login.userid }" readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">File DROP Here</label>
