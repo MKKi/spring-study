@@ -50,8 +50,19 @@
 	
 	<interceptors>
 		<interceptor>
-			<mapping path="user/loginPost" />
+			<mapping path="/user/loginPost" />
 			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<!-- Authentication Interceptor -->
+	<beans:bean id="authInterceptor" class="com.mkki.interceptor.AuthInterceptor">
+	</beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/sboard/register"/>
+			<beans:ref bean="authInterceptor"></beans:ref>
 		</interceptor>
 	</interceptors>
 </beans:beans>
