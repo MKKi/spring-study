@@ -48,7 +48,7 @@
 
 					<div class="form-group">
 						<label for="exampleInputWriter1">Writer</label> <input type="text"
-							name="writer" class="form-control" value="${boardVO.writer }"
+							name="writer" class="form-control" value="${login.userid }"
 							readonly="readonly">
 					</div>
 					
@@ -57,9 +57,10 @@
 				
 				<div class="box-footer">
 					<ul class="mailbox-attachments clearfix uploadedList"></ul>
-		
-					<button type="submit" class="btn btn-warning" id="modifyBtn">Modify</button>
-					<button type="submit" class="btn btn-danger" id="removeBtn">Remove</button>
+					<c:if test="${login.userid == boardVO.writer }">
+						<button type="submit" class="btn btn-warning" id="modifyBtn">Modify</button>
+						<button type="submit" class="btn btn-danger" id="removeBtn">Remove</button>
+					</c:if>
 					<button type="submit" class="btn btn-primary" id="listBtn">List</button>
 				</div>
 			</div>
@@ -68,24 +69,36 @@
 	</div>
 	<!-- /.row -->
 	
+	<!-- reply -->
 	<div class="row">
 		<div class="col-md-12">
 			<div class="box box-success">
 				<div class="box-header">
 					<h3 class="box-title">ADD NEW REPLY</h3>
 				</div>
-				<div class="box-body">
-					<label for="exampleInputEmail1">Writer</label>
-					<input class="form-control" type="text" placeholder="USER ID"
-						id="newReplyWriter">
-					<label for="exampleInputEmail1">Reply Text</label>
-					<input class="form-control" type="text" placeholder="REPLY TEXT"
-						id="newReplyText">
-				</div>
-				<!-- /.box-body -->
-				<div class="box-footer">
-					<button type="submit" class="btn btn-primary" id="replyAddBtn">ADD REPLY</button>
-				</div>
+				
+				<c:if test="${not empty login}">
+					<div class="box-body">
+						<label for="exampleInputEmail1">Writer</label>
+						<input class="form-control" type="text" placeholder="USER ID"
+							id="newReplyWriter">
+						<label for="exampleInputEmail1">Reply Text</label>
+						<input class="form-control" type="text" placeholder="REPLY TEXT"
+							id="newReplyText">
+					</div>
+					<!-- /.box-body -->
+					<div class="box-footer">
+						<button type="submit" class="btn btn-primary" id="replyAddBtn">ADD REPLY</button>
+					</div>
+				</c:if>
+				
+				<c:if test="${empty login}">
+					<div class="box-body">
+						<div>
+							<a href="javascript:goLogin();">Login Please</a>
+						</div>
+					</div>
+				</c:if>
 			</div>
 			
 			<!-- The Time Line -->
@@ -194,8 +207,10 @@
 			<h3 class="timeline-header"><strong>{{rno}}</strong> -{{replyer}}</h3>
 			<div class="timeline-body">{{replytext}}</div>
 			<div class="timeline-footer">
+				{{#eqReplyer replyer}}
 				<a class="btn btn-primary btn-xs"
 					data-toggle="modal" data-target="#modifyModal">Modify</a>
+				{{/eqReplyer}}
 			</div>
 		</div>
 	</li>
@@ -237,6 +252,14 @@
 		var month = dateObj.getMonth() + 1;
 		var date = dateObj.getDate();
 		return year+"/"+month+"/"+date;
+	});
+	
+	Handlebars.registerHelper("eqReplyer", function(replyer, block){
+		var accum = '';
+		if(replyer == '${login.userid}'){
+			accum += block.fn();
+		}	
+		return accum;
 	});
 	
 	var printData = function(replyArr, target, templateObject){
