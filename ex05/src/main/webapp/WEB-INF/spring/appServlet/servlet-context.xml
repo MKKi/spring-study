@@ -32,7 +32,7 @@
 		<beans:constructor-arg value="C:\\uploadTest"></beans:constructor-arg>
 	</beans:bean>
 	
-	<!-- Interceptor -->
+	<!-- Sample Interceptor -->
 	<beans:bean id="sampleInterceptor" class="com.mkki.interceptor.SampleInterceptor">
 	</beans:bean>
 	
@@ -41,6 +41,17 @@
 			<mapping path="/doA"/>
 			<mapping path="/doB"/>
 			<beans:ref bean="sampleInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<!-- Login Interceptor -->
+	<beans:bean id="loginInterceptor" class="com.mkki.interceptor.LoginInterceptor">
+	</beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="user/loginPost" />
+			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>
 </beans:beans>
